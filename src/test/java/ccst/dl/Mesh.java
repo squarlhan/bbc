@@ -168,7 +168,9 @@ public class Mesh {
 					bw.flush();
 					
 				}else{
-					System.out.println(line);
+					bw.write("D000000" + "="+ line.toLowerCase()+ "\n");
+				    bw.flush();
+//				    System.out.println(line);
 				}
 			}
 			
@@ -179,11 +181,41 @@ public class Mesh {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+	}
+	
+	public Set<Set<String>> readds(String addr){
 		
-		
-		
-		
-		
+		Set<Set<String>> rs = new HashSet<Set<String>>();
+		File dsfile = new File(addr);
+
+		try {
+			InputStreamReader ir = new InputStreamReader(new FileInputStream(dsfile));
+			BufferedReader reader = new BufferedReader(ir);
+
+			Set<String> names = null;
+			int i = 0;
+			for (String line = reader.readLine().trim(); line != null; line = reader.readLine()) {
+				names = new HashSet<String>();
+				String[] lines = line.split("=");
+				String[] sublines = lines[1].trim().split("\\|");
+				for (String s : sublines) {
+					names.add(s);
+				}
+				rs.add(names);
+				i++;
+//				System.out.println(i +"set size: "+rs.size());
+			}
+			ir.close();
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public static void main(String[] args) {
@@ -193,7 +225,9 @@ public class Mesh {
 //		mesh.init("C:/Users/install/Desktop/hxs/bbc/MeSH/d2016.bin");
 //		mesh.writemaps("C:/Users/install/Desktop/hxs/bbc/MeSH/");
 		mesh.initfromfile("C:/Users/install/Desktop/hxs/bbc/MeSH/");
-		mesh.findsynonyms("C:/Users/install/Desktop/hxs/bbc/MeSH/disease200.txt", "C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt");
+		mesh.findsynonyms("C:/Users/install/Desktop/hxs/bbc/MeSH/disease205.txt",
+		"C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt");
+		System.out.println(mesh.readds("C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt").size());
 
 	}
 
