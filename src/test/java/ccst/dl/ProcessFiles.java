@@ -3,10 +3,12 @@
  */
 package ccst.dl;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class ProcessFiles {
 		this.outurl = outurl;
 	}
 
-	
+	//delete stop words and lemmation, and merge the files from same month
 	public void process() throws IOException{
 		PreLemmaStop pls = new PreLemmaStop();
 		File root = new File(rooturl);
@@ -134,7 +136,7 @@ public class ProcessFiles {
 			pls.preprocess(ftemp, stopf, fout);
 		}
 	}
-	
+	//delete stop words and lemmation
 	public void processnomerge() throws IOException{
 		PreLemmaStop pls = new PreLemmaStop();
 		File root = new File(rooturl);
@@ -202,6 +204,52 @@ public class ProcessFiles {
 		}
 	}
 	
+	public void mergerbymonth(String newsnum) throws IOException{
+		File root = new File(rooturl);
+		File[] sublists = root.listFiles();
+		File outdir = new File(outurl);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(newsnum));
+		List<File> files;
+		if(!outdir.exists()){
+			outdir.mkdirs();
+		}
+		for(File f: sublists){
+			//merge files
+			files = new ArrayList<File>();
+			files.addAll(Arrays.asList(f.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    if(dir.isDirectory()){
+                        return true;
+                    }
+                    name = dir.getName();
+                    return name.endsWith(".txt")|| name.endsWith(".TXT");
+                }
+            })));
+			
+			String outname = f.getName();
+			File fout = new File(outdir, outname+".txt");
+			FileOutputStream out = new FileOutputStream(fout);
+			
+			bw.write(outname+"\t"+files.size()+"\n");
+			bw.flush();
+			
+			for (File fs : files) {
+				FileInputStream in = new FileInputStream(fs);
+				int c;
+				while ((c = in.read()) != -1) {
+					if(!(c==(int)' ')&&!(c==(int)'\n')){
+						out.write(Character.toLowerCase(c));
+					}					
+				}
+				in.close();
+			}
+			out.close();
+			
+		}
+		bw.close();
+	}
+	
 	public boolean isSignal(int i){
 		Set<Integer> sigset = new HashSet();
 		sigset.add((int)',');
@@ -229,12 +277,14 @@ public class ProcessFiles {
 		
 		ProcessFiles pf = new ProcessFiles();
 		pf.setRooturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
-		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
-		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
-		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");
+		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/");
+//		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
+//		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
+//		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");
 		try {
 //			pf.process();
-			pf.processnomerge();
+//			pf.processnomerge();
+			pf.mergerbymonth("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

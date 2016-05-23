@@ -200,6 +200,7 @@ public class Mesh {
 				String[] lines = line.split("=");
 				String[] sublines = lines[1].trim().split("\\|");
 				for (String s : sublines) {
+					s.replaceAll(" ", "");
 					names.add(s);
 				}
 				rs.add(names);
