@@ -22,12 +22,21 @@ public class Mesh {
 
 	private HashMap<String, String> index;
 	private HashMap<String, Set<String>> entry;
+	private String type;
 
 	public Mesh() {
 		super();
 		// TODO Auto-generated constructor stub
 		index = new HashMap<String, String>();
 		entry = new HashMap<String, Set<String>>();
+	}
+	
+	public Mesh(String type) {
+		super();
+		// TODO Auto-generated constructor stub
+		index = new HashMap<String, String>();
+		entry = new HashMap<String, Set<String>>();
+		this.type = type;
 	}
 
 	public HashMap<String, String> getIndex() {
@@ -52,9 +61,11 @@ public class Mesh {
 			InputStreamReader ir = new InputStreamReader(new FileInputStream(meshfile));
 			BufferedReader reader = new BufferedReader(ir);
 			Set<String> names = null;
+			boolean flag = false;
 			for (String line = reader.readLine().trim(); line != null; line = reader.readLine()) {
 				if (line.startsWith("*NEWRECORD")) {
 					names = new HashSet<String>();
+					flag = type.equals("all")?true:false;
 				}
 				if (line.startsWith("MH") && !line.startsWith("MH_")) {
 					String[] lines = line.split("=");
@@ -65,7 +76,12 @@ public class Mesh {
 					String[] sublines = lines[1].trim().split("\\|");
 					names.add(sublines[0].trim().toLowerCase().replaceAll(",", ""));
 				}
-				if (line.startsWith("UI")) {
+				if(!flag&&line.startsWith("MN")){
+					String[] lines = line.split("=");
+					String s = lines[1].trim().toLowerCase();
+					flag = s.startsWith(type.toLowerCase())?true:false;
+				}
+				if (flag&&line.startsWith("UI")) {
 					String[] lines = line.split("=");
 					String id = lines[1].trim();
 					entry.put(id, names);
@@ -87,12 +103,12 @@ public class Mesh {
 	public void writemaps(String addr) {
 
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(addr + "index.map"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(addr +type+ "index.map"));
 			for (Entry<String, String> i : index.entrySet()) {
 				bw.write(i.getKey() + "=" + i.getValue() + "\n");
 				bw.flush();
 			}
-			bw = new BufferedWriter(new FileWriter(addr + "entry.map"));
+			bw = new BufferedWriter(new FileWriter(addr +type+ "entry.map"));
 			for (Entry<String, Set<String>> e : entry.entrySet()) {
 				bw.write(e.getKey() + "=");
 				String t = "";
@@ -111,8 +127,8 @@ public class Mesh {
 	}
 
 	public void initfromfile(String addr) {
-		File indexfile = new File(addr + "index.map");
-		File entryfile = new File(addr + "entry.map");
+		File indexfile = new File(addr + type+"index.map");
+		File entryfile = new File(addr+ type + "entry.map");
 
 		try {
 			InputStreamReader ir = new InputStreamReader(new FileInputStream(indexfile));
@@ -200,8 +216,9 @@ public class Mesh {
 				String[] lines = line.split("=");
 				String[] sublines = lines[1].trim().split("\\|");
 				for (String s : sublines) {
-					s.replaceAll(" ", "");
+					s = s.replaceAll(" ", "");
 					names.add(s);
+					if(s.length()<=4)System.out.println(s);
 				}
 				rs.add(names);
 				i++;
@@ -222,12 +239,12 @@ public class Mesh {
 	public static void main(String[] args) {
 
 		// TODO Auto-generated method stub
-		Mesh mesh = new Mesh();
+		Mesh mesh = new Mesh("c");
 //		mesh.init("C:/Users/install/Desktop/hxs/bbc/MeSH/d2016.bin");
 //		mesh.writemaps("C:/Users/install/Desktop/hxs/bbc/MeSH/");
 		mesh.initfromfile("C:/Users/install/Desktop/hxs/bbc/MeSH/");
-		mesh.findsynonyms("C:/Users/install/Desktop/hxs/bbc/MeSH/disease205.txt",
-		"C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt");
+//		mesh.findsynonyms("C:/Users/install/Desktop/hxs/bbc/MeSH/disease205.txt",
+//		"C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt");
 		System.out.println(mesh.readds("C:/Users/install/Desktop/hxs/bbc/MeSH/ds.txt").size());
 
 	}
