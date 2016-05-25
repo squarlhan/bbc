@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Normalize {
@@ -59,6 +61,27 @@ public class Normalize {
 
 	public void setMsp(int msp) {
 		this.msp = msp;
+	}
+	
+	public void dir2monthly(String topfile, String dailydir, String monthlydir){
+		File meshfile = new File(topfile);
+		List<String> tops = new ArrayList<String>();
+		try {
+			InputStreamReader ir = new InputStreamReader(new FileInputStream(meshfile));
+			BufferedReader reader = new BufferedReader(ir);
+			for (String line = reader.readLine().trim(); line != null; line = reader.readLine()) {
+				String l = line.trim();
+				if (l.length() > 0) {
+					tops.add(l);
+					newsnum_daily2monthly(dailydir+l+".txt", monthlydir+l+".txt");
+				}
+			}
+		} catch ( IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	public void newsnum_daily2monthly(String dailyaddr, String monthlyaddr){
@@ -141,7 +164,10 @@ public class Normalize {
 		Normalize normal = new Normalize(2010, 2016, 4, 4);
 //		normal.newsnum_daily2monthly("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt", 
 //				"C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
+//		normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
+		normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt", 
+				"C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/", 
+				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
 	}
 
 }
