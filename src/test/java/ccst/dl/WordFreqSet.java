@@ -26,11 +26,15 @@ public class WordFreqSet {
 		if(!od.exists()){
 			od.mkdirs();
 		}
+		BufferedWriter bw = new BufferedWriter(new FileWriter(outdir+"tongji.txt"));
 		for(Set<String> set : keywords){
 			String name = (String) set.toArray()[0];
-			int c = getfreqbyset(rootdir,  outdir+name+".txt", set);
+			int c = getfreqbyset(rootdir,  outdir+name+".txt", set);		
+			bw.write(name+"\t"+c + "\n");
+			bw.flush();
 			System.out.println(name+"\t"+c);
 		}
+		bw.close();
 
 	}
 	
@@ -74,9 +78,9 @@ public class WordFreqSet {
 			BufferedReader reader = new BufferedReader(ir);
 			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				for (String s : keywords) {
-					if(this.doesget(s)){
+//					if(this.doesget(s)){
 						count += StringUtils.countMatches(line, s);
-					}
+//					}
 					
 				}
 			}
@@ -104,8 +108,8 @@ public class WordFreqSet {
 		Set<Set<String>> keywords = mesh.readds("C:/Users/install/Desktop/hxs/bbc/MeSH/centry.map");
 		long st = System.currentTimeMillis();
 		try {
-			wfs.getfreq("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/",
-					 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/", keywords);
+			wfs.getfreq("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfowithspace/",
+					 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/", keywords);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -224,9 +224,9 @@ public class Mesh {
 				String[] lines = line.split("=");
 				String[] sublines = lines[1].trim().split("\\|");
 				for (String s : sublines) {
-					s = s.replaceAll(" ", "");
+//					s = s.replaceAll(" ", "");
 					names.add(s);
-					if(s.length()<=4)System.out.println(s);
+//					if(s.length()<=4)System.out.println(s);
 				}
 				rs.add(names);
 				i++;

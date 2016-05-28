@@ -177,10 +177,10 @@ public class RunAP {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt");
+		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top120cn.txt");
 		Normalize normal = new Normalize(2010, 2016, 4, 4);
-		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
-				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
+		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
+				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
 		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		ra.trans2apin(normal.getNormalfrqs());
 		ra.setConvits(null);

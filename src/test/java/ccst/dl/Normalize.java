@@ -82,6 +82,10 @@ public class Normalize {
 	public void dir2monthly(String topfile, String dailydir, String monthlydir) {
 		File meshfile = new File(topfile);
 		List<String> tops = new ArrayList<String>();
+		File od = new File(monthlydir) ;
+		if(!od.exists()){
+			od.mkdirs();
+		}
 		try {
 			InputStreamReader ir = new InputStreamReader(new FileInputStream(meshfile));
 			BufferedReader reader = new BufferedReader(ir);
@@ -287,12 +291,12 @@ public class Normalize {
 		// normal.newsnum_daily2monthly("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt",
 		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		// normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		// normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
-		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/",
-		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
-		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
-				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
-		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
+		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
+		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/",
+		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
+//		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
+//				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
+//		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 	}
 
 }

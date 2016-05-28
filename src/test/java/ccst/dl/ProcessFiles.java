@@ -238,7 +238,8 @@ public class ProcessFiles {
 				FileInputStream in = new FileInputStream(fs);
 				int c;
 				while ((c = in.read()) != -1) {
-					if(!(c==(int)' ')&&!(c==(int)'\n')){
+					if(!(c==(int)'\n')){
+//					if(!(c==(int)' ')&&!(c==(int)'\n')){
 						out.write(Character.toLowerCase(c));
 					}					
 				}
@@ -277,7 +278,7 @@ public class ProcessFiles {
 		
 		ProcessFiles pf = new ProcessFiles();
 		pf.setRooturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
-		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/");
+		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfowithspace/");
 //		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
 //		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
 //		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");
