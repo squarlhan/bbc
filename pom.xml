@@ -148,6 +148,7 @@
 			<artifactId>webmagic-extension</artifactId>
 			<version>0.5.3</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

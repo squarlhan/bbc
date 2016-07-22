@@ -3,6 +3,7 @@ package ccst.dl.spider;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
@@ -21,7 +22,8 @@ public class CNNTest implements PageProcessor {
         page.putField("content", page.getHtml().xpath("//div[@class='zn-body__paragraph']/text()").all());
 
         // 部分三：从页面发现后续的url地址来抓取
-        page.addTargetRequests(page.getHtml().links().regex("(http://www\\.cnn\\.com/2016/\\d{2}/\\d{2}/health/.+)").all());
+        page.addTargetRequests(page.getHtml().links().regex("(http://www\\.cnn\\.com/20\\d{2}/\\d{2}/\\d{2}/.+)").all());
+        page.addTargetRequests(page.getHtml().links().regex("(http://money\\.cnn\\.com/20\\d{2}/\\d{2}/\\d{2}/.+)").all());
     }
 
     @Override
@@ -33,11 +35,12 @@ public class CNNTest implements PageProcessor {
 
         Spider.create(new CNNTest())
                 //从"https://github.com/code4craft"开始抓
-                .addUrl("http://www.cnn.com/health")
-                .addPipeline(new JsonFilePipeline("C:/Users/install/Desktop/hxs/test"))
+                .addUrl("http://www.cnn.com/")
+                .addPipeline(new CNNFilePipeline("C:/Users/install/Desktop/hxs/test/cnnall/"))
                 //开启5个线程抓取
                 .thread(5)
                 //启动爬虫
                 .run();
+        System.out.println(CNNFilePipeline.count);
     }
 }

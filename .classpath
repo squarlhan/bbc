@@ -12,7 +12,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="lib/lombok.jar"/>
 	<classpathentry kind="lib" path="lib/libsvm.jar"/>
 	<classpathentry kind="lib" path="lib/jgap.jar"/>
+	<classpathentry kind="lib" path="lib/JSAT-0.0.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
