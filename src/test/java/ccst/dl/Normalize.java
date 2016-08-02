@@ -176,6 +176,52 @@ public class Normalize {
 		return newsmap;
 	}
 
+	public double[][] getmatrixfromfils(String topaddr, int num, String diraddr) {
+		List<HashMap<String, Integer>> list = new ArrayList<HashMap<String, Integer>>();
+		try {
+			InputStreamReader ir = new InputStreamReader(new FileInputStream(topaddr));
+			BufferedReader reader = new BufferedReader(ir);
+			int i = 0;
+			for (String line = reader.readLine().trim(); line != null; line = reader.readLine()) {
+				String l = line.trim();
+				if (l.length() > 0) {
+					list.add(readmontlynums(diraddr + l + ".txt"));
+					i++;
+				}
+				if(i>=num){
+					break;
+				}
+			}
+			ir.close();
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ii = list.size();
+		int jj = list.get(0).size();
+		double[][] re = new double[ii][jj];
+		for (int i = 0; i <= ii - 1; i++) {
+			int j = 0;
+			for (int y = yst; y <= ysp; y++) {
+				for (int m = 1; m <= 12; m++) {
+					if (!((y == yst && m < mst) || (y == ysp && m > msp))) {
+						String sy = String.valueOf(y);
+						String sm = String.valueOf(m);
+						sm = sm.length() < 2 ? "-0" + sm : "-" + sm;
+						re[i][j] = list.get(i).get(sy + sm);
+						j++;
+					}
+
+				}
+
+			}
+		}
+		this.disfrqs = re;
+		return re;
+
+	}
+	
 	public double[][] getmatrixfromfils(String topaddr, String diraddr) {
 		List<HashMap<String, Integer>> list = new ArrayList<HashMap<String, Integer>>();
 		try {
@@ -291,7 +337,7 @@ public class Normalize {
 		// normal.newsnum_daily2monthly("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt",
 		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		// normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
+		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
 		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/",
 		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
 //		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",

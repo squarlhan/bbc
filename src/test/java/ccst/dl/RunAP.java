@@ -1,7 +1,10 @@
 package ccst.dl;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
@@ -26,7 +29,7 @@ public class RunAP {
 	
 	
 
-	public RunAP(String dictaddr) {
+	public RunAP(String dictaddr, int num) {
 		super();
 		// TODO Auto-generated constructor stub
 		dicts = new HashMap<Integer, String>();
@@ -39,6 +42,9 @@ public class RunAP {
 				if (l.length() > 0) {
 					dicts.put(i, l);
 					i++;
+					if(i>=num){
+						break;
+					}
 				}
 			}
 			ir.close();
@@ -121,7 +127,29 @@ public class RunAP {
 		this.dicts = dicts;
 	}
 	
-	public Collection<InteractionData> trans2apin(double[][] input){
+	public void write2file(double[][] x, String addr) throws IOException{
+		int r = x.length;
+		int c = x[0].length;
+		File f = new File(addr);
+		if(f.exists()){
+			f.delete();
+			f.createNewFile();
+		}else{
+			f.createNewFile();
+		}
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+		for(int i = 0; i<= r-1; i++){
+			for(int j = 0; j<=c-1; j++){
+				bw.write(String.valueOf(x[i][j])+'\t');
+				bw.flush();
+			}
+			bw.write('\n');
+			bw.flush();
+		}
+		bw.close();
+	}
+	
+	public Collection<InteractionData> trans2apin(double[][] input, String addr) throws IOException{
 		double[][] dis = EucDistance.calcEucMatrix(input);
 		Collection<InteractionData> ints = new HashSet<InteractionData>();
 //		int row = dis.length;
@@ -130,6 +158,7 @@ public class RunAP {
 //				ints.add(new InteractionData(dicts.get(i), dicts.get(j), dis[i][j]));
 //			}
 //		}
+		write2file(input, addr);
 		ints = EucDistance.transEucMatrix(dis);
 		this.dists = ints;
 		this.preferences = dis[0][0];
@@ -159,6 +188,7 @@ public class RunAP {
 		centers.addAll(results);
 		HashMap<String, Set<String>> rs= new HashMap<String, Set<String>>();
 		for(int i = 0; i<= results.size()-1;i++){
+			System.out.println(results.get(i));
 			String c = dicts.get(results.get(i));
 			if(rs.get(c)==null){
 				Set<String> names = new HashSet<String>();
@@ -177,12 +207,19 @@ public class RunAP {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top120cn.txt");
+		int num = 150;
+		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top150cn.txt", num);
 		Normalize normal = new Normalize(2010, 2016, 4, 4);
-		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
+		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt", num,
 				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
 		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		ra.trans2apin(normal.getNormalfrqs());
+		try {
+			ra.trans2apin(normal.getNormalfrqs(), 
+					"C:/Users/install/Desktop/hxs/bbc/MeSH/apin"+String.valueOf(num)+".txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ra.setConvits(null);
 		ra.setIterations(100);
 		ra.setLambda(0.8);
