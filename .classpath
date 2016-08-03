@@ -31,7 +31,5 @@
 	<classpathentry kind="lib" path="lib/libsvm.jar"/>
 	<classpathentry kind="lib" path="lib/jgap.jar"/>
 	<classpathentry kind="lib" path="lib/JSAT-0.0.5.jar"/>
-	<classpathentry kind="lib" path="lib/tsne-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/jmathplot-1.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
