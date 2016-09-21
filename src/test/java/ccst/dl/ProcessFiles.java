@@ -278,7 +278,7 @@ public class ProcessFiles {
 		
 		ProcessFiles pf = new ProcessFiles();
 		pf.setRooturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
-		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfowithspace/");
+		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/");
 //		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
 //		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
 //		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");

@@ -338,8 +338,8 @@ public class Normalize {
 		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		// normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
-		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/",
-		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
+		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/",
+		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
 //		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
 //				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
 //		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");

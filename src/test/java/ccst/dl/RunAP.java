@@ -207,8 +207,8 @@ public class RunAP {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int num = 150;
-		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top150cn.txt", num);
+		int num = 50;
+		RunAP ra = new RunAP("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt", num);
 		Normalize normal = new Normalize(2010, 2016, 4, 4);
 		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt", num,
 				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
