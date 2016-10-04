@@ -12,15 +12,12 @@ import java.io.InputStreamReader;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
-public class Checks {
+public class DoubleCheck {
 	
 	public void check(String freqaddr, String synaddr, String outaddr, String keyword, String year){
 		Mesh mesh = new Mesh("c");
@@ -32,7 +29,7 @@ public class Checks {
 			
 			try {
 				if(doesget(s)){
-					res.addAll(countbykw(freqaddr, keyword, year));
+					res.addAll(countbykw(freqaddr, s, year));
 				    
 				}
 			} catch (IOException e) {
@@ -77,8 +74,8 @@ public class Checks {
 
 		for (File f : files) {
 			String fname = f.getName().substring(0, 10);
-
-			if(fname.startsWith(year)){
+			if(true){
+//			if(fname.startsWith(year)){
 			    int count = 0;
 			    InputStreamReader ir = new InputStreamReader(new FileInputStream(f));
 			    BufferedReader reader = new BufferedReader(ir);
@@ -115,12 +112,12 @@ public class Checks {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String freqaddr = "C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfowithspace/";
+		String freqaddr = "C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/";
 		String synaddr = "C:/Users/install/Desktop/hxs/bbc/MeSH/";
 		String outaddr = "C:/Users/install/Desktop/hxs/bbc/Check/";
-		String kw = "hantavirus pulmonary syndromes";
+		String kw = "sclerosing panencephalitides subacute";
 		String year = "2013";
-		Checks c = new Checks();
+		DoubleCheck c = new DoubleCheck();
 		
 		c.check(freqaddr, synaddr, outaddr, kw, year);
 		

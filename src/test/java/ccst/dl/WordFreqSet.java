@@ -26,7 +26,7 @@ public class WordFreqSet {
 		if(!od.exists()){
 			od.mkdirs();
 		}
-		BufferedWriter bw = new BufferedWriter(new FileWriter(outdir+"tongji.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(outdir+"20160922tongji.txt"));
 		for(Set<String> set : keywords){
 			String name = (String) set.toArray()[0];
 			int c = getfreqbyset(rootdir,  outdir+name+".txt", set);		
@@ -43,15 +43,20 @@ public class WordFreqSet {
 		set.add("ache");
 		set.add("arc");
 		set.add("bite");
-		set.add("orf");
+//		set.add("orf");
 		set.add("pain");
-		set.add("pus");
-		set.add("stis");
+//		set.add("pus");
+//		set.add("stis");
 		set.add("sti");
 		set.add("sid");
 		set.add("tic");
 		if(set.contains(s))return false;
 		return true;
+	}
+	
+	public String rmpunctuation(String str){
+		str = str.replaceAll("[.,\"\\?!:';\\(\\)]", " ");
+		return str;
 	}
 
 	public int getfreqbyset(String rootdir, String result, Set<String> keywords) throws IOException {
@@ -79,7 +84,7 @@ public class WordFreqSet {
 			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				for (String s : keywords) {
 					if(this.doesget(s)){
-						count += StringUtils.countMatches(line, s);
+						count += StringUtils.countMatches(rmpunctuation(" "+line+" "), " "+s+" ");
 					}
 					
 				}
@@ -104,12 +109,13 @@ public class WordFreqSet {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		WordFreqSet wfs = new WordFreqSet();
+//		String s = wfs.rmpunctuation("asdfashg.asfd,(as)df'asdfasdf?{sdaf]");
 		Mesh mesh = new Mesh();
 		Set<Set<String>> keywords = mesh.readds("C:/Users/install/Desktop/hxs/bbc/MeSH/centry.map");
 		long st = System.currentTimeMillis();
 		try {
 			wfs.getfreq("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/",
-					 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/", keywords);
+					 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/", keywords);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

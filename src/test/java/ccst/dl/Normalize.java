@@ -337,7 +337,7 @@ public class Normalize {
 		// normal.newsnum_daily2monthly("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt",
 		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		// normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/top150.txt",
+		 normal.dir2monthly("C:/Users/install/Desktop/hxs/bbc/MeSH/20160922tops.txt",
 		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/",
 		 "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/");
 //		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
