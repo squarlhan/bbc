@@ -277,15 +277,15 @@ public class ProcessFiles {
 		// TODO Auto-generated method stub
 		
 		ProcessFiles pf = new ProcessFiles();
-		pf.setRooturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
-		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/");
+		pf.setRooturl("C:/Users/install/Desktop/hxs/test/Beast/data/");
+		pf.setOuturl("C:/Users/install/Desktop/hxs/test/Beast/mergedata/");
 //		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
 //		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
 //		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");
 		try {
 //			pf.process();
 //			pf.processnomerge();
-			pf.mergerbymonth("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt");
+			pf.mergerbymonth("C:/Users/install/Desktop/hxs/test/Beast/newsnum.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

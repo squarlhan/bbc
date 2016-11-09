@@ -111,11 +111,11 @@ public class WordFreqSet {
 		WordFreqSet wfs = new WordFreqSet();
 //		String s = wfs.rmpunctuation("asdfashg.asfd,(as)df'asdfasdf?{sdaf]");
 		Mesh mesh = new Mesh();
-		Set<Set<String>> keywords = mesh.readds("C:/Users/install/Desktop/hxs/bbc/MeSH/centry.map");
+		Set<Set<String>> keywords = mesh.readds("./centry.map");
 		long st = System.currentTimeMillis();
 		try {
-			wfs.getfreq("C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/",
-					 "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqswithspace/", keywords);
+			wfs.getfreq("./mergedata/",
+					 "./allfrq/", keywords);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

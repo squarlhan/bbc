@@ -25,9 +25,9 @@ public class evaluateW2V {
        // double[] wordVector = wordVectors.getWordVector("myword");
 
         log.info("Evaluate model...");
-        double sim = wordVectors.similarity("cancer", "tumor");
-        log.info("Similarity between cancer and disease" + sim);
-        Collection<String> similar = wordVectors.wordsNearest("cancer", 10);
+//        double sim = wordVectors.similarity("cancer", "tumor");
+//        log.info("Similarity between cancer and disease" + sim);
+        Collection<String> similar = wordVectors.wordsNearest("h1n1", 10);
         log.info("Similar words to cancer " + similar);
     }
 }
