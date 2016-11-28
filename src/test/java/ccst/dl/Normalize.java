@@ -334,13 +334,13 @@ public class Normalize {
 		// TODO Auto-generated method stub
 
 //		Normalize normal = new Normalize(2010, 2016, 4, 4);
-		Normalize normal = new Normalize(2003, 2016, 4, 10);
+		Normalize normal = new Normalize(2001, 2016, 1, 11);
 		// normal.newsnum_daily2monthly("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsnum.txt",
 		// "C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
 		// normal.readmontlynums("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");
-		 normal.dir2monthly("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/tops/top100.txt",
-		 "C:/Users/install/Desktop/hxs/test/AljazeeraSpider/allfrq/",
-		 "C:/Users/install/Desktop/hxs/test/AljazeeraSpider/tops/");
+		 normal.dir2monthly("C:/Users/install/Desktop/hxs/test/FOX/tops/top238.txt",
+		 "C:/Users/install/Desktop/hxs/test/FOX/allfrq/",
+		 "C:/Users/install/Desktop/hxs/test/FOX/tops/");
 //		normal.getmatrixfromfils("C:/Users/install/Desktop/hxs/bbc/MeSH/top120.txt",
 //				"C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqswithspace/");
 //		normal.normal("C:/Users/install/Desktop/hxs/bbc/bbcdata/newsmonth.txt");

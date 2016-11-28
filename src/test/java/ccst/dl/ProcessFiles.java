@@ -3,6 +3,7 @@
  */
 package ccst.dl;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -203,7 +205,11 @@ public class ProcessFiles {
 			
 		}
 	}
-	
+	/**
+	 * merge the daily news into one file without any change
+	 * @param newsnum
+	 * @throws IOException
+	 */
 	public void mergerbymonth(String newsnum) throws IOException{
 		File root = new File(rooturl);
 		File[] sublists = root.listFiles();
@@ -250,6 +256,64 @@ public class ProcessFiles {
 		}
 		bw.close();
 	}
+	/**
+	 * merge the daily news into one file one news one line
+	 * @param newsnum
+	 * @throws IOException
+	 */
+	public void mergerbyday(String newsnum) throws IOException{
+		File root = new File(rooturl);
+		File[] sublists = root.listFiles();
+		File outdir = new File(outurl);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(newsnum));
+		List<File> files;
+		if(!outdir.exists()){
+			outdir.mkdirs();
+		}
+		for(File f: sublists){
+			//merge files
+			files = new ArrayList<File>();
+			files.addAll(Arrays.asList(f.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    if(dir.isDirectory()){
+                        return true;
+                    }
+                    name = dir.getName();
+                    return name.endsWith(".txt")|| name.endsWith(".TXT");
+                }
+            })));
+			
+			String outname = f.getName();
+			File fout = new File(outdir, outname+".txt");
+			BufferedWriter bw2 = new BufferedWriter(new FileWriter(fout));
+			
+			bw.write(outname+"\t"+files.size()+"\n");
+			bw.flush();
+			
+			for (File fs : files) {
+				InputStreamReader ir = new InputStreamReader(new FileInputStream(fs));
+				BufferedReader reader = new BufferedReader(ir);
+			    for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+			    	String myline = line.trim().toLowerCase();
+			    	if(myline.startsWith("name")){
+			    		bw2.write(myline+"\n");
+			    	}else if(myline.startsWith("link")){
+			    		;
+			    	}else{
+			    		if(myline.length()>1)bw2.write(myline);
+			    	}
+			    		
+			    }
+			    bw2.write("\n");
+			    ir.close();
+			    reader.close();
+			}
+			bw2.close();
+			
+		}
+		bw.close();
+	}
 	
 	public boolean isSignal(int i){
 		Set<Integer> sigset = new HashSet();
@@ -277,15 +341,16 @@ public class ProcessFiles {
 		// TODO Auto-generated method stub
 		
 		ProcessFiles pf = new ProcessFiles();
-		pf.setRooturl("C:/Users/install/Desktop/hxs/test/Beast/data/");
-		pf.setOuturl("C:/Users/install/Desktop/hxs/test/Beast/mergedata/");
+		pf.setRooturl("C:/Users/install/Desktop/hxs/test/FOX/data/");
+		pf.setOuturl("C:/Users/install/Desktop/hxs/test/FOX/mergedata/");
 //		pf.setOuturl("C:/Users/install/Desktop/hxs/bbc/bbcdata/pfdateinfo/");
 //		pf.setStopurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/stopwords.txt");
 //		pf.setTempurl("C:/Users/install/Desktop/hxs/bbc/bbcdata/tempdateinfo/");
 		try {
 //			pf.process();
 //			pf.processnomerge();
-			pf.mergerbymonth("C:/Users/install/Desktop/hxs/test/Beast/newsnum.txt");
+//			pf.mergerbymonth("C:/Users/install/Desktop/hxs/test/Reuters/newsnum.txt");
+			pf.mergerbyday("C:/Users/install/Desktop/hxs/test/FOX/newsnum.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

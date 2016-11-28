@@ -18,7 +18,9 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * This is simple example for model weights update after initial vocab building.
@@ -31,13 +33,68 @@ import java.util.Collection;
 public class training {
 
     private static Logger log = LoggerFactory.getLogger(training.class);
-
+    
     public static void main(String[] args) throws Exception {
+    	
+        MergeFiles mf = new MergeFiles();
+		
+		List<String> ins = new ArrayList();
+		List<String> outs = new ArrayList();
+		
+//		ins.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/data/");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Beast/data/");
+//		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/data/");
+//		ins.add("C:/Users/install/Desktop/hxs/test/FOX/data/");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/data/");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/data/");
+//		
+//		outs.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/all.txt");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Beast/all.txt");
+//		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
+//		outs.add("C:/Users/install/Desktop/hxs/test/FOX/all.txt");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Reuters/all.txt");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Telegraph/all.txt");
+//		
+		int ll = ins.size();
+//		
+//		for(int i = 0; i<=ll-1;i++){
+//			mf.mergeall(ins.get(i), outs.get(i));
+//		}
+//		
+//		 ins = new ArrayList();
+//		 outs = new ArrayList();
+		
+//		ins.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/all.txt");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Beast/all.txt");
+//		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
+//		ins.add("C:/Users/install/Desktop/hxs/test/FOX/all.txt");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/all.txt");
+		ins.add("./all.txt");
+//		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/all.txt");
+		
+		
+//		outs.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/alj.mod");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Beast/beast.mod");
+//		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/cnn.mod");
+//		outs.add("C:/Users/install/Desktop/hxs/test/FOX/fox.mod");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Reuters/reuters.mod");
+		outs.add("./reuters.mod");
+//		outs.add("C:/Users/install/Desktop/hxs/test/Telegraph/telegraph.mod");
+		
+		ll = ins.size();
+		
+		for(int i = 0; i<=ll-1;i++){
+			trainmodle(ins.get(i), outs.get(i));
+		}
+    }
+
+    public static void trainmodle(String inaddr, String outaddr) throws Exception {
         /*
                 Initial model training phase
          */
 //        String filePath = new ClassPathResource("raw_sentences.txt").getFile().getAbsolutePath();
-        String filePath = "C:/Users/install/Desktop/hxs/bbc/bbcdata/result.txt";
+//        String filePath = "C:/Users/install/Desktop/hxs/bbc/bbcdata/result.txt";
+        String filePath = inaddr;
 
         log.info("Load & Vectorize Sentences....");
         // Strip white space before and after for each line
@@ -79,7 +136,9 @@ public class training {
         /*
             at this momen we're supposed to have model built, and it can be saved for future use.
          */
-        WordVectorSerializer.writeFullModel(vec, "C:/Users/install/Desktop/hxs/bbc/bbcdata/wordembeddingodel.mod");
+//        WordVectorSerializer.writeFullModel(vec, "C:/Users/install/Desktop/hxs/bbc/bbcdata/wordembeddingodel.mod");
+        
+        WordVectorSerializer.writeFullModel(vec, outaddr);
 
         /*
             Let's assume that some time passed, and now we have new corpus to be used to weights update.
