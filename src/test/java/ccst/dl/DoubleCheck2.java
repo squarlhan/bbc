@@ -19,7 +19,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-public class DoubleCheck {
+public class DoubleCheck2 {
 	
 	public void check(String freqaddr, String synaddr, String outaddr, String keyword, String year){
 		Mesh mesh = new Mesh("c");
@@ -369,23 +369,23 @@ public class DoubleCheck {
 		// TODO Auto-generated method stub
 
 //		String freqaddr = "C:/Users/install/Desktop/hxs/bbc/bbcdata/mergeinfo/";
-		String freqaddr = "./mergedata/";
-		String synaddr = "./";
+		String freqaddr = "C:/Users/install/Desktop/hxs/test/Beast/mergedata/";
+		String synaddr = "C:/Users/install/Desktop/hxs/bbc/MeSH/";
 //		String outaddr = "C:/Users/install/Desktop/hxs/bbc/Check/";
-		String outaddr = "./Check/";
+		String outaddr = "C:/Users/install/Desktop/hxs/test/Beast/Check/";
 		String alldir = "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/";
 		String topdir = "C:/Users/install/Desktop/hxs/bbc/bbcdata/topfrqs/";
 //		String topaddr = "C:/Users/install/Desktop/hxs/bbc/MeSH/20161005tops.txt";
-		String topaddr = "./top.txt";
+		String topaddr = "C:/Users/install/Desktop/hxs/test/Beast/top150.txt";
 		String tongjiaddr = "C:/Users/install/Desktop/hxs/bbc/bbcdata/allfrqs/20160922tongji.txt";
 		String kw = "avian flu";
 		String year = "2013";
-		DoubleCheck c = new DoubleCheck();
+		DoubleCheck2 c = new DoubleCheck2();
 		
 //		c.check(freqaddr, synaddr, outaddr, kw, year);
-		c.checknytops(topaddr, outaddr, synaddr, freqaddr, year);
+//		c.checknytops(topaddr, outaddr, synaddr, freqaddr, year);
 //		c.checkbalance(alldir, topdir, topaddr, tongjiaddr);
-//		c.pipeline();
+		c.pipeline();
 	}
 
 }

@@ -40,7 +40,7 @@ public class training {
 		
 		List<String> ins = new ArrayList();
 		List<String> outs = new ArrayList();
-		
+		ins.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Beast/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/data/");
@@ -48,6 +48,7 @@ public class training {
 //		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/data/");
 //		
+		outs.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Beast/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
@@ -56,20 +57,20 @@ public class training {
 //		outs.add("C:/Users/install/Desktop/hxs/test/Telegraph/all.txt");
 //		
 		int ll = ins.size();
-//		
-//		for(int i = 0; i<=ll-1;i++){
-//			mf.mergeall(ins.get(i), outs.get(i));
-//		}
-//		
-//		 ins = new ArrayList();
-//		 outs = new ArrayList();
+		
+		for(int i = 0; i<=ll-1;i++){
+			mf.mergeall(ins.get(i), outs.get(i));
+		}
+		
+		 ins = new ArrayList();
+		 outs = new ArrayList();
 		
 //		ins.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Beast/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/FOX/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/all.txt");
-		ins.add("./all.txt");
+		ins.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/all.txt");
 		
 		
@@ -78,7 +79,7 @@ public class training {
 //		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/cnn.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/FOX/fox.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Reuters/reuters.mod");
-		outs.add("./reuters.mod");
+		outs.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/bbc.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Telegraph/telegraph.mod");
 		
 		ll = ins.size();
