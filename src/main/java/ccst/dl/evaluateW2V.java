@@ -79,7 +79,7 @@ public class evaluateW2V {
 		}
     }
     
-    public void pipeline(){
+    public void pipeline() throws FileNotFoundException{
     	List<String> mostlist = new ArrayList();
     	List<String> modlist = new ArrayList();
     	List<String> outlist = new ArrayList();

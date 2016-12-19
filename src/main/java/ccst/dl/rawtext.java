@@ -9,7 +9,6 @@ import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
-import org.deeplearning4j.ui.UiServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
@@ -19,7 +18,8 @@ public class rawtext {
 
     private static Logger log = LoggerFactory.getLogger(rawtext.class);
 
-    public static void main(String[] args) throws Exception {
+    @SuppressWarnings("deprecation")
+	public static void main(String[] args) throws Exception {
 
         String filePath = new ClassPathResource("raw_sentences.txt").getFile().getAbsolutePath();
 
