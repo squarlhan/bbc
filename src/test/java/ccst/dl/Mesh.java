@@ -171,6 +171,34 @@ public class Mesh {
 
 	}
 	
+	public void initentryfile(String addr) {
+
+		try {
+
+			InputStreamReader ir = new InputStreamReader(new FileInputStream(addr));
+			BufferedReader reader = new BufferedReader(ir);
+			Set<String> names = null;
+			for (String line = reader.readLine().trim(); line != null; line = reader.readLine()) {
+				names = new HashSet<String>();
+				String[] lines = line.split("=");
+				String[] sublines = lines[1].trim().split("\\|");
+				for (String s : sublines) {
+					names.add(s);
+				}
+				entry.put(lines[0], names);
+			}
+			ir.close();
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void findsynonyms(String inaddr, String outaddr){
 		
 		
