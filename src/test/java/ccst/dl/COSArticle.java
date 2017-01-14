@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -260,22 +261,59 @@ public class COSArticle {
             System.out.println(i++ + ":" +s.get(0)+"\t"+s.get(1));
         }
 	}
+	
+	public void pipeline(){
+		
+		List<String> root_dir_name = new ArrayList<String>();
+		
+		root_dir_name.add("AljazeeraSpider");
+		root_dir_name.add("BBC");
+//		root_dir_name.add("Beast");
+		root_dir_name.add("CNNSpider");
+		root_dir_name.add("FOX");
+		root_dir_name.add("Telegraph");
+		root_dir_name.add("Reuters");
+		
+		int s = root_dir_name.size();
+		for(int i = 0; i<=s-1;i++){
+			String mesh_addr = "C:/Users/install/Desktop/hxs/test/"+root_dir_name.get(i)+"/centry.map";
+			String rooturl = "C:/Users/install/Desktop/hxs/test/"+root_dir_name.get(i)+"/data/";
+			String maddr = "C:/Users/install/Desktop/hxs/test/"+root_dir_name.get(i)+"/matrix.txt";
+			String iaddr = "C:/Users/install/Desktop/hxs/test/"+root_dir_name.get(i)+"/indexid.txt";
+			COSArticle ca = new COSArticle(mesh_addr);
+//			ca.test_Descartes();
+			try {
+				System.out.println(new Date()+" : "+ root_dir_name.get(i)+"START!");
+				ca.count_co_occurrency(rooturl);
+				ca.writematrix(maddr, iaddr);
+				System.out.println(new Date()+" : "+ root_dir_name.get(i)+"DONE!");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
 
 	public static void main(String[] args) {
+		
+		COSArticle ca = new COSArticle();
+		ca.pipeline();
 		// TODO Auto-generated method stub
-		String mesh_addr = "C:/Users/install/Desktop/hxs/test/Beast/centry.map";
-		String rooturl = "C:/Users/install/Desktop/hxs/test/Beast/data/";
-		String maddr = "C:/Users/install/Desktop/hxs/test/Beast/matrix.txt";
-		String iaddr = "C:/Users/install/Desktop/hxs/test/Beast/indexid.txt";
-		COSArticle ca = new COSArticle(mesh_addr);
-//		ca.test_Descartes();
-		try {
-			ca.count_co_occurrency(rooturl);
-			ca.writematrix(maddr, iaddr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String mesh_addr = "C:/Users/install/Desktop/hxs/test/Beast/centry.map";
+//		String rooturl = "C:/Users/install/Desktop/hxs/test/Beast/data/";
+//		String maddr = "C:/Users/install/Desktop/hxs/test/Beast/matrix.txt";
+//		String iaddr = "C:/Users/install/Desktop/hxs/test/Beast/indexid.txt";
+//		COSArticle ca = new COSArticle(mesh_addr);
+////		ca.test_Descartes();
+//		try {
+//			ca.count_co_occurrency(rooturl);
+//			ca.writematrix(maddr, iaddr);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
     }
 
