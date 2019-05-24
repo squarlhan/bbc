@@ -3,7 +3,6 @@
  */
 package ccst.dl;
 
-import org.canova.api.util.ClassPathResource;
 import org.deeplearning4j.models.embeddings.WeightLookupTable;
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
@@ -40,7 +39,7 @@ public class training {
 		
 		List<String> ins = new ArrayList();
 		List<String> outs = new ArrayList();
-		ins.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/info/");
+		ins.add("E:/news/test/bbc/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Beast/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/data/");
@@ -48,7 +47,7 @@ public class training {
 //		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/data/");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/data/");
 //		
-		outs.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/all.txt");
+		outs.add("E:/news/test/bbc/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/AljazeeraSpider/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Beast/all.txt");
 //		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
@@ -58,9 +57,9 @@ public class training {
 //		
 		int ll = ins.size();
 		
-		for(int i = 0; i<=ll-1;i++){
-			mf.mergeall(ins.get(i), outs.get(i));
-		}
+//		for(int i = 0; i<=ll-1;i++){
+//			mf.mergeall(ins.get(i), outs.get(i));
+//		}
 		
 		 ins = new ArrayList();
 		 outs = new ArrayList();
@@ -70,7 +69,7 @@ public class training {
 //		ins.add("C:/Users/install/Desktop/hxs/test/CNNSpider/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/FOX/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Reuters/all.txt");
-		ins.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/all.txt");
+		ins.add("E:/news/test/bbc/all.txt");
 //		ins.add("C:/Users/install/Desktop/hxs/test/Telegraph/all.txt");
 		
 		
@@ -79,7 +78,7 @@ public class training {
 //		outs.add("C:/Users/install/Desktop/hxs/test/CNNSpider/cnn.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/FOX/fox.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Reuters/reuters.mod");
-		outs.add("C:/Users/install/Desktop/hxs/bbc/bbcdata/bbc.mod");
+		outs.add("E:/news/test/bbc/bbc1.mod");
 //		outs.add("C:/Users/install/Desktop/hxs/test/Telegraph/telegraph.mod");
 		
 		ll = ins.size();

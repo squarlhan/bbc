@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<prerequisites>
@@ -16,8 +17,8 @@
 		<shadedClassifier>bin</shadedClassifier>
 		<nd4j.backend>nd4j-native-platform</nd4j.backend>
 		<java.version>1.8</java.version>
-		<nd4j.version>0.7.1</nd4j.version>
-		<dl4j.version>0.7.1</dl4j.version>
+		<nd4j.version>1.0.0-SNAPSHOT</nd4j.version>
+		<dl4j.version>1.0.0-SNAPSHOT</dl4j.version>
 		<canova.version>0.0.0.14</canova.version>
 		<guava.version>19.0</guava.version>
 		<datavec.version>0.7.1</datavec.version>
@@ -78,14 +79,24 @@
 			<artifactId>deeplearning4j-nlp</artifactId>
 			<version>${dl4j.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-core</artifactId>
+			<artifactId>deeplearning4j-zoo</artifactId>
 			<version>${dl4j.version}</version>
 		</dependency>
+
+		<!-- deeplearning4j-ui is used for visualization: see http://deeplearning4j.org/visualization -->
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-ui_2.10</artifactId>
+			<artifactId>deeplearning4j-ui_2.11</artifactId>
+			<version>1.0.0-beta4</version>
+		</dependency>
+
+		<!-- ParallelWrapper & ParallelInference live here -->
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-parallel-wrapper</artifactId>
 			<version>${dl4j.version}</version>
 		</dependency>
 		<dependency>
@@ -104,7 +115,7 @@
 			<groupId>org.nd4j</groupId>
 			<artifactId>${nd4j.backend}</artifactId>
 		</dependency>
-		<dependency>
+	<!--	<dependency>
 			<artifactId>canova-nd4j-image</artifactId>
 			<groupId>org.nd4j</groupId>
 			<version>${canova.version}</version>
@@ -114,7 +125,7 @@
 			<groupId>org.nd4j</groupId>
 			<version>${canova.version}</version>
 		</dependency>
-		<!-- Used in the RegressionMathFunctions example -->
+		 Used in the RegressionMathFunctions example -->
 		<dependency>
 			<groupId>jfree</groupId>
 			<artifactId>jfreechart</artifactId>
@@ -157,6 +168,17 @@
 			<version>3.0.2-1.2</version>
 			<classifier>windows-x86_64</classifier>
 		</dependency>
+		<dependency>
+			<groupId>org.bytedeco.javacpp-presets</groupId>
+			<artifactId>hdf5-platform</artifactId>
+			<version>1.10.1-1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp</artifactId>
+			<version>1.5</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.github.fommil.netlib</groupId>
 			<artifactId>all</artifactId>

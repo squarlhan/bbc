@@ -26,17 +26,17 @@ public class Sentiment {
 			
 			List<String> names = new ArrayList<String>();
 //			names.add("BBC");
-			names.add("CNN");
-			names.add("BEAST");
-			names.add("TELE");
+			//names.add("CNN");
+			//names.add("BEAST");
+			//names.add("TELE");
 			names.add("FOX");
-			names.add("REUTERS");
-			names.add("ALJ");
+			//names.add("REUTERS");
+			//names.add("ALJ");
 			
 			for(String name:names){
-				sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Clinton/2015.10/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Clinton6.txt");
-				//sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Obama/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Obama.txt");
-				//sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Trump/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Trump.txt");
+				//sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Clinton/2016.8/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Clinton3.txt");
+//				sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Obama/2016/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Obama5.txt");
+				sentimentbydir("C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Trump/2015/", "C:/Users/install/Desktop/hxs/recent/data/"+name+"extract_Trump1.txt");
 			}
 			
 			

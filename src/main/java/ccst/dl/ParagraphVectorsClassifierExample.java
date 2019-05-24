@@ -1,7 +1,7 @@
 package ccst.dl;
 
+import org.datavec.api.berkeley.Pair;
 import org.datavec.api.util.ClassPathResource;
-import org.deeplearning4j.berkeley.Pair;
 import ccst.dl.tools.LabelSeeker;
 import ccst.dl.tools.MeansBuilder;
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable;
